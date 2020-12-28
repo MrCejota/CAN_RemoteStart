@@ -1,0 +1,32 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "/home/carlos/arduino-1.8.13/arduino-1.8.13/tools/**",
+                "/home/carlos/Arduino/libraries/**",
+                "/home/carlos/arduino-1.8.13/arduino-1.8.13/libraries/**",
+                "/home/carlos/arduino-1.8.13/arduino-1.8.13/hardware/tools/**",
+                "/home/carlos/arduino-1.8.13/arduino-1.8.13/hardware/arduino/avr/**",
+                "${workspaceFolder}/**",
+                "/home/carlos/arduino-1.8.13/arduino-1.8.13/hardware/arduino/avr/libraries/SPI/src",
+                "/home/carlos/Arduino/libraries/arduino-mcp2515-master",
+                "/home/carlos/arduino-1.8.13/arduino-1.8.13/hardware/arduino/avr/cores/arduino",
+                "/home/carlos/arduino-1.8.13/arduino-1.8.13/hardware/tools/avr/avr",
+                "/home/carlos/arduino-1.8.13/arduino-1.8.13/hardware/tools/avr/avr/include",
+                "/home/carlos/arduino-1.8.13/arduino-1.8.13/hardware/arduino/avr/variants/standard"
+            ],
+            "defines": [
+                "USBCON"
+            ],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu17",
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "gcc-x64",
+            "forcedInclude": [
+                "/home/carlos/arduino-1.8.13/arduino-1.8.13/hardware/arduino/avr/cores/arduino/Arduino.h"
+            ]
+        }
+    ],
+    "version": 4
+}
