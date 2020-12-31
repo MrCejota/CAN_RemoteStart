@@ -8,14 +8,17 @@ struct can_frame initMsg;
 struct can_frame startupMsg;
 struct can_frame stopdownMsg;
 
-const int spi_cs_pin = 10;
+const int spi_cs_pin = 10; //10
 MCP2515 mcp2515(spi_cs_pin);
+
 
 const int redLED = 2;
 const int greenLED = 3;
 
 const int startButtonPin = 5;
 const int stopButtonPin = 4;
+
+const int messageDelay = 0;
 
 void startCar(void);
 void shutdownCar(void);
@@ -29,7 +32,7 @@ void setup() {
 
   Serial.begin(115200);
   mcp2515.reset();
-  mcp2515.setBitrate(CAN_125KBPS, MCP_16MHZ);
+  mcp2515.setBitrate(CAN_500KBPS, MCP_16MHZ);
   mcp2515.setNormalMode();
 
   wakeMsg.can_id  = 0x100;
@@ -85,12 +88,12 @@ void loop()
 void startCar(void)
 {
   mcp2515.sendMessage(&wakeMsg);
-  delay(500);
+  delay(messageDelay);
   mcp2515.sendMessage(&initMsg);
-  delay(500);
+  delay(messageDelay);
   mcp2515.sendMessage(&startupMsg);
   Serial.println("Startup message sent");
-  delay(500);
+  delay(messageDelay);
   digitalWrite(redLED, LOW);
   digitalWrite(greenLED, HIGH);  
 }
@@ -98,12 +101,12 @@ void startCar(void)
 void shutdownCar(void)
 {
   mcp2515.sendMessage(&wakeMsg);
-  delay(500);
+  delay(messageDelay);
   mcp2515.sendMessage(&initMsg);
-  delay(500);
+  delay(messageDelay);
   mcp2515.sendMessage(&stopdownMsg);
   Serial.println("Shutdown message sent");
-  delay(500);
+  delay(messageDelay);
   digitalWrite(redLED, HIGH);
   digitalWrite(greenLED, LOW);  
 }
