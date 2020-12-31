@@ -1,3 +1,5 @@
+/*CAN_RemoteStart*/
+
 #include <SPI.h>
 #include <mcp2515.h>
 
@@ -13,7 +15,7 @@ const int redLED = 2;
 const int greenLED = 3;
 
 const int startButtonPin = 5;
-const int stopButtonPin = 6;
+const int stopButtonPin = 4;
 
 void startCar(void);
 void shutdownCar(void);
@@ -101,7 +103,6 @@ void shutdownCar(void)
   delay(500);
   mcp2515.sendMessage(&stopdownMsg);
   Serial.println("Shutdown message sent");
-  delay(500);
   delay(500);
   digitalWrite(redLED, HIGH);
   digitalWrite(greenLED, LOW);  

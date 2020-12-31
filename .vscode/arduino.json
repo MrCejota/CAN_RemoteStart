@@ -1,5 +1,6 @@
 {
     "board": "arduino:avr:uno",
     "programmer": "AVRISP mkII",
-    "sketch": "CAN_RemoteStart.ino"
+    "sketch": "CAN_RemoteStart.ino",
+    "port": "/dev/ttyACM0"
 }
