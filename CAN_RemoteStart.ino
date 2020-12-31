@@ -59,7 +59,7 @@ void setup() {
   startupMsg.data[2] = 0x0a;
 
   stopdownMsg.can_id  = 0x0080B0;
-  stopdownMsg.can_dlc = 3;
+  stopdownMsg.can_dlc = 2;
   stopdownMsg.data[0] = 0x02;
   stopdownMsg.data[1] = 0x0C;
 
