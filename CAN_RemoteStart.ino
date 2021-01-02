@@ -11,17 +11,13 @@ struct can_frame stopdownMsg;
 const int spi_cs_pin = 10; //10
 MCP2515 mcp2515(spi_cs_pin);
 
-
 const int redLED = 2;
 const int greenLED = 3;
 
 const int startButtonPin = 5;
 const int stopButtonPin = 4;
 
-const int messageDelay = 0;
-
-void startCar(void);
-void shutdownCar(void);
+const int messageDelay = 100;
 
 void setup() {
 
@@ -77,36 +73,32 @@ void loop()
 {
   if (digitalRead(startButtonPin) == HIGH &&
       digitalRead(stopButtonPin != HIGH))
-    startCar();
+      {
+          mcp2515.sendMessage(&wakeMsg);
+          delay(messageDelay);
+          mcp2515.sendMessage(&initMsg);
+          delay(messageDelay);
+          mcp2515.sendMessage(&startupMsg);
+          Serial.println("Startup message sent");
+          Serial.println(startupMsg.can_id, HEX);
+          delay(messageDelay);
+          digitalWrite(redLED, LOW);
+          digitalWrite(greenLED, HIGH);  
+      }
   if (digitalRead(stopButtonPin) == HIGH &&
       digitalRead(startButtonPin != HIGH))
-    shutdownCar();
+      {
+          mcp2515.sendMessage(&wakeMsg);
+          delay(messageDelay);
+          mcp2515.sendMessage(&initMsg);
+          delay(messageDelay);
+          mcp2515.sendMessage(&stopdownMsg);
+          Serial.println("Shutdown message sent");
+          Serial.println(stopdownMsg.can_id, HEX);
+          delay(messageDelay);
+          digitalWrite(redLED, HIGH);
+          digitalWrite(greenLED, LOW); 
+      }
 
   delay(500);
-}
-
-void startCar(void)
-{
-  mcp2515.sendMessage(&wakeMsg);
-  delay(messageDelay);
-  mcp2515.sendMessage(&initMsg);
-  delay(messageDelay);
-  mcp2515.sendMessage(&startupMsg);
-  Serial.println("Startup message sent");
-  delay(messageDelay);
-  digitalWrite(redLED, LOW);
-  digitalWrite(greenLED, HIGH);  
-}
-
-void shutdownCar(void)
-{
-  mcp2515.sendMessage(&wakeMsg);
-  delay(messageDelay);
-  mcp2515.sendMessage(&initMsg);
-  delay(messageDelay);
-  mcp2515.sendMessage(&stopdownMsg);
-  Serial.println("Shutdown message sent");
-  delay(messageDelay);
-  digitalWrite(redLED, HIGH);
-  digitalWrite(greenLED, LOW);  
 }
